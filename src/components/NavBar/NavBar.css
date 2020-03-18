@@ -1,0 +1,50 @@
+.container{
+    background-color: #003055;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.right{
+  list-style-type: none;
+  float: right;
+  margin: 0px;
+  padding: 5px 0px 5px 0px;
+}
+
+/* Format Navigation Link Items*/
+.right li{
+    display: inline;
+    padding:10px 20px 10px 20px;
+    margin: 10px;
+    border: 1px solid #E6B220;
+}
+
+/* Format Navigation Links Text*/
+.text-link{
+    text-decoration: inherit;
+    color: white
+}
+
+
+/* Large Screens */
+@media only screen and (min-width: 441px){
+
+    /* Format Navigation Link Items*/
+    .right li{
+        padding:10px 20px 10px 20px;
+        margin: 10px;
+    }
+}
+
+
+/* Mobile Screens */
+@media only screen and (max-width: 440px){
+    /* Format Navigation Link Items*/
+    .right li{
+        padding:12px 10px 10px 12px;
+        margin: 5px;
+        font-size: 12px;
+
+    }
+
+}

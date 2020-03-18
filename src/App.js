@@ -1,18 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import './App.css';
+import NavBar from './components/NavBar/NavBar';
+import HomePage from './components/HomePage/HomePage';
+import LoginPage from './components/LoginPage/LoginPage';
+import Register from './components/Register/Register';
 
+const Home = () =>(
+    <HomePage />
+);
+
+const Login = () =>(
+    <LoginPage />
+);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-            Hello Caitlin Landrus.
-        </p>
-      </header>
-    </div>
+    <Router>
+        <div className="App">
+        {/*//Reference on using Routes https://github.com/morchf/react-login-form/blob/master/src/App.js */}
+        <NavBar />
+            <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/login" component={Login} />
+                <Route path="/register" component={Register} />
+             </Switch>
+
+        </div>
+    </Router>
+
   );
 }
 
