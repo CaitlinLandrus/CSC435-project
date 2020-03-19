@@ -4,32 +4,23 @@ import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import HomePage from './components/HomePage/HomePage';
 import LoginPage from './components/LoginPage/LoginPage';
-import Register from './components/Register/Register';
+import RegisterPage from './components/RegisterPage/RegisterPage';
 
-const Home = () =>(
-    <HomePage />
-);
 
-const Login = () =>(
-    <LoginPage />
-);
+
 
 function App() {
   return (
     <Router>
         <div className="App">
-        {/*//Reference on using Routes https://github.com/morchf/react-login-form/blob/master/src/App.js */}
-        <NavBar />
-            //<Switch>
-                <Route exact path="/" component={Home} />
-                <Route path="/login" component={Login} />
-                <Route path="/register" component={Register} />
-            //</Switch>
-
+            {/*//Reference on using Routes https://github.com/morchf/react-login-form/blob/master/src/App.js */}
+            <NavBar />
+            <Route exact path="/" component={HomePage} />
+            <Route path="/login" component={LoginPage} />
+            <Route path="/register" component={RegisterPage} />
         </div>
     </Router>
 
   );
 }
-
 export default App;

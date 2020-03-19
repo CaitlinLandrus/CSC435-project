@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-class Register extends Component {
+class RegisterPage extends Component {
   render() {
     return (
       <div className="Register">
@@ -12,4 +12,4 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default RegisterPage;
