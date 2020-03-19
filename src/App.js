@@ -24,6 +24,7 @@ function App() {
                 <Route exact path="/" component={Home} />
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
+                <Redirect to="/" /> {/* https://css-tricks.com/react-router-4/ */}
              </Switch>
 
         </div>
