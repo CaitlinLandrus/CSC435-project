@@ -20,12 +20,11 @@ function App() {
         <div className="App">
         {/*//Reference on using Routes https://github.com/morchf/react-login-form/blob/master/src/App.js */}
         <NavBar />
-            <Switch>
+            //<Switch>
                 <Route exact path="/" component={Home} />
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
-                <Redirect to="/" /> // https://css-tricks.com/react-router-4/
-             </Switch>
+            //</Switch>
 
         </div>
     </Router>
