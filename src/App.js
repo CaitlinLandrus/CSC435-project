@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import HomePage from './components/HomePage/HomePage';
@@ -24,7 +24,7 @@ function App() {
                 <Route exact path="/" component={Home} />
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
-                
+                <Redirect to="/" /> // https://css-tricks.com/react-router-4/
              </Switch>
 
         </div>
