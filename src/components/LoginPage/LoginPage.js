@@ -5,6 +5,15 @@ import { Link } from 'react-router-dom'
 
 
 class LoginPage extends Component{
+    /*  https://dev.to/judearasu/change-the-document-title-on-react-application--4dgo
+         - sets the title of my page
+         - will move to app.js once I know what my pages will be  */
+
+    componentDidMount() {
+      document.title = 'Sign In | CSP Store';
+    }
+
+
     onSubmit = (data) => {
         console.log("Login page submitted: " , data)
     };
@@ -23,7 +32,13 @@ class LoginPage extends Component{
 
 
 class LoginForm extends Component{
+    constructor(props) {
+        super(props);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+    }
     //Referenced: https://www.youtube.com/watch?v=qH4pJISKeoI
+    //will likely need to track error state?
     state = {
         username: '',
         password:'',
@@ -32,7 +47,8 @@ class LoginForm extends Component{
 
     // the change function is built to track changes on the form fields
     // and will update the state variables when any of the fields are changed.
-    change = e =>{
+    handleChange(e){
+        console.log(e);
         this.setState({
             [e.target.name]: e.target.value
         })
@@ -41,11 +57,17 @@ class LoginForm extends Component{
 
     // This is outputting the state of our fields to the console for now.
     // We are not connected to a databse for updating any data at this point
-    onSubmit = e =>{
+    handleSubmit(e){
         //prevent default prefents the default behavior or refreshing the page on submit
         e.preventDefault()
         this.props.onSubmit(this.state) //passes the state to the LoginPage
         //console.log(this.state)
+
+        //resets the fields to blank
+        this.setState({
+            username: '',
+            password:'',
+        })
     }
 
     render(){
@@ -53,30 +75,19 @@ class LoginForm extends Component{
             <div className = "LoginPage-form-container">
                 <h3>SIGN IN</h3>
 
-                <form className = "LoginPage-form">
-                    <label >Username: </label><br/>
-                    {/* Username */}
-                    <input
-                        type="text"
-                        id = "username"
-                        name = "username"
-                        value={this.state.firstName} // starts as empty string
-                        onChange={e => this.change(e)} // updates the state with the change function
-                    />
+                <form className = "LoginPage-form" onSubmit={this.handleSubmit}>
+
+                    {/* Username -- calls handleChange() method when user types to update state */}
+                    <Input title ="Username:" name={"username"} type = "text"  value = {this.state.username} onChange = {this.handleChange}/>
                     <br/>
 
-                    {/* Password */}
-                    <label>Password: </label><br/>
-                    <input
-                        type="password"
-                        id = "password"
-                        name = "password"
-                        value={this.state.password} // starts as empty string
-                        onChange={e => this.change(e)} // updates the state with the change function
-                    /><br/>
+                    {/* Password  -- calls handleChange() method when user types to update state*/}
+                    <Input title ="Password:" name={"password"} type = "password"  value = {this.state.password}  onChange = {this.handleChange}/>
+                    <br/>
 
-                    {/* Execute the onSubmit() function we defined above */}
-                    <button type = "submit" value = "Submit" onClick={e=>this.onSubmit(e)}>Sign In</button>
+                    {/* When submit button is clicked, the form calls handleSubmit */}
+                    <Button type={"submit"} value = {"Submit"}  title = "Sign In"/>
+
                 </form>
 
                 <div className = "createAccount">
@@ -87,5 +98,37 @@ class LoginForm extends Component{
         );
     }
 }
+
+//Referenced https://www.codementor.io/@blizzerand/building-forms-using-react-everything-you-need-to-know-iz3eyoq4y
+//Generic Button
+const Button = (props) => {
+    return(
+        <button
+            type= {props.type}
+            value= {props.value}
+            onClick= {props.action}
+        >
+            {props.title}
+        </button>)
+};
+
+//Generic input field
+const Input = (props) =>{
+    return(
+        <div>
+            <label htmlFor={props.name}>{props.title} </label>
+            <br/>
+            <input
+            id={props.name}
+            name={props.name}
+            type={props.type}
+            value={props.value} // starts as empty string
+            onChange={props.onChange}// updates the state with the change function
+            placeholder={props.placeholder}
+            />
+        </div>
+    )
+}
+
 
 export default LoginPage;

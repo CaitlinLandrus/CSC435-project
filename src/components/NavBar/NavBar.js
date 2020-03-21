@@ -8,18 +8,19 @@ import { Link } from 'react-router-dom'
 
 const NavBar = ()=>{
     return(
-        <nav className = "nav-wrapper">
-            <div className = "container">
-                <ul className = "right">
-                    <li><Link to="/" className='text-link'>Home</Link></li>
-                    <li><Link to="/login" className='text-link'>Sign In</Link></li>
-                    <li><Link to="/register" className='text-link'>Sign Up</Link></li>
-                    <li><Link to="/cart" className='text-link'>Cart</Link></li>
-                </ul>
-            </div>
+        <div>
 
+            <nav className = "navigation-bar">
+            <img src="logo.png" alt="csp store"  className = "logo"/>
+                <div className="link-container">
+                    <div className = "links"><Link to="/" className='text-link'>Home</Link></div>
+                    <div className = "links"><Link to="/login" className='text-link'>Sign In</Link></div>
+                    <div className = "links"><Link to="/register" className='text-link'>Sign Up</Link></div>
+                    <div className = "links"><Link to="/cart" className='text-link'>Cart</Link></div>
+                </div>
 
-        </nav>
+            </nav>
+        </div>
     );
 }
 
