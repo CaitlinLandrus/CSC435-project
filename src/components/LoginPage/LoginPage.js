@@ -7,24 +7,23 @@ import { Link } from 'react-router-dom'
 class LoginPage extends Component{
     /*  https://dev.to/judearasu/change-the-document-title-on-react-application--4dgo
          - sets the title of my page
-         - will move to app.js once I know what my pages will be  */
-
+     */
     componentDidMount() {
       document.title = 'Sign In | CSP Store';
     }
 
-
+    //prints the data from the form submission
     onSubmit = (data) => {
         console.log("Login page submitted: " , data)
     };
+
     render() {
       return (
         <div className="LoginPage">
           <h2 className= "App-header">Returning Customer</h2>
+          //pass the form date to the o
           <LoginForm onSubmit={data => this.onSubmit(data)} />
         </div>
-
-
       );
     }
 }
@@ -100,6 +99,8 @@ class LoginForm extends Component{
 }
 
 //Referenced https://www.codementor.io/@blizzerand/building-forms-using-react-everything-you-need-to-know-iz3eyoq4y
+//I will likely pull these out into their own individual JS file for reuse on the registration page
+
 //Generic Button
 const Button = (props) => {
     return(
