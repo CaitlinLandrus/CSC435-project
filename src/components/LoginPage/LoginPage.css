@@ -48,11 +48,11 @@ h3{
     font-weight: normal;
 }
 
-
-@media only screen and (min-width: 800px){
+/* large screen size */
+@media only screen and (min-width: 789px){
     .LoginPage-form-container{
         margin: 50px;
-        width: 60%;
+        width: 70%;
         padding: 30px 5px;
         margin-left: auto;
         margin-right: auto;
@@ -60,7 +60,7 @@ h3{
     }
 
     .LoginPage-form{
-        width: 60%;
+        width: 70%;
     }
 
 
@@ -71,7 +71,36 @@ h3{
 
 }
 
-@media only screen and (max-width: 799px){
+/* mid-size screens */
+@media only screen and (min-width: 570px) and (max-width: 788px){
+    .LoginPage-form-container{
+        margin: 50px;
+        width: 80%;
+        padding: 30px 5px;
+        margin-left: auto;
+        margin-right: auto;
+        border-top: 3px solid #E6B220;
+    }
+
+    .LoginPage-form{
+        width: 80%;
+    }
+
+    input, button, .create-account-link{
+        margin: 0px 0px 20px 0px;
+    }
+
+
+    button{
+        width: 200px;
+        height: 50px;
+    }
+
+}
+
+
+/* small screens */
+@media only screen and (max-width: 570px){
     .LoginPage-form-container{
         margin: 10px;
         width: 90%;
@@ -86,6 +115,9 @@ h3{
         width: 80%;
     }
 
+    input, button, .create-account-link{
+        margin: 0px 0px 10px 0px;
+    }
 
     button{
         width: 150px;

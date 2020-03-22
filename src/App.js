@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import HomePage from './components/HomePage/HomePage';
@@ -21,6 +21,7 @@ const Register = () =>(
 
 function App() {
   return (
+      /* Routes the user to the given page */
     <Router>
         <div className="App">
             {/*//Reference on using Routes https://github.com/morchf/react-login-form/blob/master/src/App.js */}

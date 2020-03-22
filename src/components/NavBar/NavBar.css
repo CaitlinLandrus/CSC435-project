@@ -1,3 +1,15 @@
+.title{
+    height: 40px;
+    font-size: 2em;
+    line-height: 30px;
+    background-color: black;
+    color: white;
+    overflow: hidden;
+    margin: 0;
+    font-style: normal;
+    font-weight: 300;
+}
+
 /* Format Navigation Bar*/
 .navigation-bar{
     background-color: #003055;
@@ -68,6 +80,18 @@
 
 /* Mobile Screens */
 @media only screen and (max-width: 570px){
+    .title{
+        height: 40px;
+        font-size: 1.5em;
+        line-height: 30px;
+        background-color: black;
+        color: white;
+        overflow: hidden;
+        margin: 0;
+        font-style: normal;
+        font-weight: 300;
+    }
+
     .navigation-bar{
         height: 140px;
     }
@@ -81,4 +105,6 @@
         margin: 5px;
         font-size: 12px;
     }
+
+
 }

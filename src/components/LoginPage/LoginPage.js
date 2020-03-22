@@ -2,7 +2,18 @@ import React, { Component } from 'react';
 import './LoginPage.css';
 import { Link } from 'react-router-dom'
 
+/*
+    Written By: Caitlin Landrus
+    Course: 100 CSC 435 Advanced Web App Development,
+    Assignment: Week 2, Assignment 2
+    Created: 3/15/2020
+    Revised: 3/20/2020 - Submitted Login page and NavBar
 
+    Summary: both general and admin users can login
+        - header is the NavBar
+        - title included in Nav Bar
+        - page title is the h2 tag
+*/
 
 class LoginPage extends Component{
     /*  https://dev.to/judearasu/change-the-document-title-on-react-application--4dgo
@@ -12,7 +23,11 @@ class LoginPage extends Component{
       document.title = 'Sign In | CSP Store';
     }
 
-    //prints the data from the form submission
+    /**
+    * prints the data from the form submission
+    * parameters:  Data from form
+    * output: writes to console console.log
+    */
     onSubmit = (data) => {
         console.log("Login page submitted: " , data)
     };
@@ -21,7 +36,6 @@ class LoginPage extends Component{
       return (
         <div className="LoginPage">
           <h2 className= "App-header">Returning Customer</h2>
-          //pass the form date to the o
           <LoginForm onSubmit={data => this.onSubmit(data)} />
         </div>
       );
@@ -31,21 +45,32 @@ class LoginPage extends Component{
 
 
 class LoginForm extends Component{
+
+    /** Form Constructor */
     constructor(props) {
         super(props);
+
+        //Referenced: https://www.youtube.com/watch?v=qH4pJISKeoI
+        //will likely need to track error state?
+        this.state = {
+            username: '',
+            password:'',
+        }
+
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
-    //Referenced: https://www.youtube.com/watch?v=qH4pJISKeoI
-    //will likely need to track error state?
-    state = {
-        username: '',
-        password:'',
-    }
 
 
-    // the change function is built to track changes on the form fields
-    // and will update the state variables when any of the fields are changed.
+    /*
+        the change function is built to track changes on the form fields
+        and will update the state variables when any of the fields are changed.
+
+        parameters: change event
+        Output: prints the change track in the colnsole
+        Results: Updates the state's to be the changed value (for given name)
+
+     */
     handleChange(e){
         console.log(e);
         this.setState({
@@ -54,8 +79,13 @@ class LoginForm extends Component{
     }
 
 
-    // This is outputting the state of our fields to the console for now.
-    // We are not connected to a databse for updating any data at this point
+    /*  This is outputting the state of our fields to the console for now.
+        We are not connected to a databse for updating any data at this point
+
+        Parameter: submit event
+        Output: none
+        Result: passes the state to parent via props, resets state to empty fields
+    */
     handleSubmit(e){
         //prevent default prefents the default behavior or refreshing the page on submit
         e.preventDefault()
@@ -101,7 +131,15 @@ class LoginForm extends Component{
 //Referenced https://www.codementor.io/@blizzerand/building-forms-using-react-everything-you-need-to-know-iz3eyoq4y
 //I will likely pull these out into their own individual JS file for reuse on the registration page
 
-//Generic Button
+/*
+Generic Button
+    parameters:
+        -props.type - type of button
+        -props.value - value of button
+        -props.action - onClick action handler
+        -props.title - Label for button
+    returns: button with given parameters
+*/
 const Button = (props) => {
     return(
         <button
@@ -113,7 +151,18 @@ const Button = (props) => {
         </button>)
 };
 
-//Generic input field
+
+/*
+Generic input field
+    parameters:
+        - props.name  - name and id of input filed
+        - props.title - label for input field
+        - props.type  - type of input field
+        - props. value - value of input field
+        - props.onChange - onChange handler
+        - props.placeholder - placeholder value for input field
+    returns: Input field with given parameters
+*/
 const Input = (props) =>{
     return(
         <div>
