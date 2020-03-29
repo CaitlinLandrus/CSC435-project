@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import  Button  from '../../FormFields/Button'
+import  Header  from '../../PageElements/Header'
 
 
 /*
@@ -47,7 +48,7 @@ class Logout extends Component{
     render() {
         return(
             <div className = "logoff">
-            <h2 className= "App-header">Log Off</h2>
+                <Header header={"Log Off"} />
                 <div className = "LoginPage-form-container">
 
 

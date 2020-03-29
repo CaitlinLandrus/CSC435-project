@@ -15,18 +15,18 @@ class App extends Component{
         password : "",
     }
 
-    //gets login information via login page
-    login = (username, password) =>{
+    /* gets login information via login page */
+    login = (state) =>{
         //update the state of the applications username/password
         return(
             this.setState({
-                username: username,
-                password: password,
+                username: state.username,
+                password: state.password,
             })
         )
     }
 
-    //clears user information via logoff page
+    /*  clears user information via logoff page  */
     logoff = () =>{
         //update the state of the applications username/password
         return(

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import  Button  from '../../FormFields/Button'
-import  Input  from '../../FormFields/Input'
-import  Select  from '../../FormFields/Select'
-import  Error  from '../../Error/Error'
+import Button  from '../../FormFields/Button'
+import Input  from '../../FormFields/Input'
+import Select  from '../../FormFields/Select'
+import Error  from '../../Error/Error'
+import Header from '../../PageElements/Header'
 import './RegistrationPage.css';
-
 
 
 /*
@@ -22,13 +22,13 @@ class RegisterPage extends Component {
        document.title = 'Create Account | CSP Store';
     }
     onSubmit = (data) => {
-        console.log("Login page submitted: " , data)
+        console.log("Regiser page submitted: " , data)
     };
     render() {
         return (
             <div className="Register">
-            <h2 className= "App-header">New Customer</h2>
-            <RegisterForm onSubmit={data => this.onSubmit(data)} />
+                <Header header = {"New Customer"} />
+                <RegisterForm onSubmit={data => this.onSubmit(data)} />
             </div>
         );
     }
@@ -95,6 +95,10 @@ class RegisterForm extends Component{
        })
     }
 
+    /**
+    * Validates the user's input to ensure all required fields are populated
+    * and makes sure the password and confirmation password match.
+    */
     validate = () =>{
         let typeError = '';
         let usernameError = '';
@@ -269,7 +273,7 @@ class RegisterForm extends Component{
                     />
                     <Error>{this.state.error.passwordError}</Error>
 
-
+                    {/* confirmPassword  -- calls handleChange() method when user types to update state*/}
                     <Input
                         title ="Confirm Password:"
                         name={"confirmPassword"}

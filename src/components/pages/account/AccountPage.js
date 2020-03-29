@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Header from '../../PageElements/Header'
 //import userData from '../../data/userData.json';
 
 class AccountPage extends Component {
@@ -23,8 +24,8 @@ class AccountPage extends Component {
   render() {
     return (
       <div className="ShopPage">
-        <h2 className= "App-header">Update Account</h2>
-        This page is going to update contact info for user with:
+        <Header header={"Update Account"}/>
+        TODO: This page is going to update contact info for user with:
         <br/>  username: {this.props.username}
         <br/>  password: {this.props.password}
 

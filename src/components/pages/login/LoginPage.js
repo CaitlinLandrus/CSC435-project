@@ -3,6 +3,7 @@ import './LoginPage.css';
 import  Button  from '../../FormFields/Button'
 import  Input  from '../../FormFields/Input'
 import  Error  from '../../Error/Error'
+import  Header  from '../../PageElements/Header'
 import { Link } from 'react-router-dom'
 import  userData from '../../data/userData.json';
 
@@ -19,34 +20,6 @@ import  userData from '../../data/userData.json';
         - page title is the h2 tag
 */
 
-class LoginPage extends Component{
-
-    /*  https://dev.to/judearasu/change-the-document-title-on-react-application--4dgo
-         - sets the title of my page
-     */
-    componentDidMount = () => {
-      document.title = 'Sign In | CSP Store';
-    }
-
-    /**
-    * prints the data from the form submission
-    * parameters:  Data from form
-    * output: writes to console console.log
-    */
-    onSubmit = (data) => {
-        console.log("Login page submitted: " , data)
-        this.props.callback(data.username, data.password);
-    };
-
-    render() {
-      return (
-        <div className="LoginPage">
-          <h2 className= "App-header">Returning Customer</h2>
-          <LoginForm onSubmit={data => this.onSubmit(data)} />
-        </div>
-      );
-    }
-}
 
 
 const initialState = {
@@ -59,14 +32,10 @@ const initialState = {
     }
 }
 
-class LoginForm extends Component{
-
+class LoginPage extends Component{
     /** Form Constructor */
-    constructor(props) {
-        super(props);
-
-        //Referenced: https://www.youtube.com/watch?v=qH4pJISKeoI
-        //will likely need to track error state?
+    constructor() {
+        super();
         this.state = initialState;
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -89,8 +58,12 @@ class LoginForm extends Component{
         })
     }
 
-
+    /*
+    * Validates the user input.  Ensures all required fields are populated.
+    * Ensures the username/password are valid based on the data provided
+    */
     validateUser = () =>{
+        //this will allow the values to get reset on re-submit
         let usernameError ='';
         let passwordError = '';
         let invalidLogin = '';
@@ -116,7 +89,8 @@ class LoginForm extends Component{
         }
 
         //if the username and password do not exist in the json, update error message
-        if(!contains){
+        //only if the username and password have been populated.
+        if(!contains && this.state.password && this.state.username){
             invalidLogin = "* Invalid username or password"
         }
 
@@ -154,8 +128,8 @@ class LoginForm extends Component{
         console.log(isValid)
         //if the user is valid, send data to parent and clear fields
         if(isValid){
-            //pass the state to the LoginPage
-            this.props.onSubmit(this.state)
+            //pass the state to App.js
+            this.props.callback(this.state)
 
             //resets the fields to blank
             this.setState(initialState)
@@ -164,46 +138,49 @@ class LoginForm extends Component{
 
     render(){
         return(
-            <div className = "LoginPage-form-container">
-                <h3>Sign In</h3>
+            <div className="LoginPage">
+                <Header header={"Returning Customer"}/>
+                <div className = "LoginPage-form-container">
+                    <h3>Sign In</h3>
 
-                <form className = "LoginPage-form" onSubmit={this.handleSubmit}>
+                    <form className = "LoginPage-form" onSubmit={this.handleSubmit}>
 
-                    <Error>{this.state.error.invalidLogin} <br/></Error>
+                        <Error>{this.state.error.invalidLogin} <br/></Error>
 
-                    {/* Username -- calls handleChange() method when user types to update state */}
-                    <Input
-                        title ="Username:"
-                        name={"username"}
-                        type = "text"
-                        value = {this.state.username}
-                        onChange = {this.handleChange}
-                    />
-                    <Error>{this.state.error.usernameError}</Error>
-                    <br/>
+                        {/* Username -- calls handleChange() method when user types to update state */}
+                        <Input
+                            title ="Username:"
+                            name={"username"}
+                            type = "text"
+                            value = {this.state.username}
+                            onChange = {this.handleChange}
+                        />
+                        <Error>{this.state.error.usernameError}</Error>
+                        <br/>
 
-                    {/* Password  -- calls handleChange() method when user types to update state*/}
-                    <Input
-                        title ="Password:"
-                        name={"password"}
-                        type = "password"
-                        value = {this.state.password}
-                        onChange = {this.handleChange}
-                    />
-                    <Error>{this.state.error.passwordError}</Error>
-                    <br/>
+                        {/* Password  -- calls handleChange() method when user types to update state*/}
+                        <Input
+                            title ="Password:"
+                            name={"password"}
+                            type = "password"
+                            value = {this.state.password}
+                            onChange = {this.handleChange}
+                        />
+                        <Error>{this.state.error.passwordError}</Error>
+                        <br/>
 
-                    {/* When submit button is clicked, the form calls handleSubmit */}
-                    <Button
-                        type={"submit"}
-                        value = {"Submit"}
-                        title = "Sign In"
-                    />
+                        {/* When submit button is clicked, the form calls handleSubmit */}
+                        <Button
+                            type={"submit"}
+                            value = {"Submit"}
+                            title = "Sign In"
+                        />
 
-                </form>
+                    </form>
 
-                <div className = "createAccount">
-                    <p>Not registered? <span> </span><Link to="/register" className = 'create-account-link'>Create an account</Link> </p>
+                    <div className = "createAccount">
+                        <p>Not registered? <span> </span><Link to="/register" className = 'create-account-link'>Create an account</Link> </p>
+                    </div>
                 </div>
             </div>
         );

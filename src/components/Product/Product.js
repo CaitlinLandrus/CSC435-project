@@ -5,33 +5,27 @@ import './Product.css';
 
 
 class Product extends Component {
-    constructor(props) {
-        super(props);
-        this.state ={
-                "id": '',
-                "title":'',
-                "price":'',
-                "quantity":'',
-                "image": '',
 
-        }
-
-        console.log(this.state);
-    }
-
+    /**
+    * Takes in the product json data from the parent page
+    * and maps each JSON object to an Item
+    *
+    * parameters: itemData - Json object
+    * Return: Item object
+    */
     showProducts = (itemData) =>{
-
         return itemData.map((itemData, index)=>{
-            console.log(this.state);
             return(
-                <div  key ={itemData.id}>
-                    {Item(itemData)}
-                </div>
+                    <Item
+                        key = {itemData.id}
+                        title = {itemData.title}
+                        price={itemData.price}
+                        image={itemData.image}
+                        quantity = {itemData.quantity}
+                    />
             )
-
         })
     }
-
 
   render() {
     return (
@@ -41,7 +35,5 @@ class Product extends Component {
     );
   }
 }
-
-
 
 export default Product;

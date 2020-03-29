@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Product from '../../Product/Product'
+import Header from '../../PageElements/Header'
 import data from '../../data/data.json';
 import './ShopPage.css'
 
@@ -27,9 +28,9 @@ class ShopPage extends Component {
   render() {
     return (
       <div className="ShopPage">
-        <h2 className= "App-header">Browse Store</h2>
+        <Header header={"Browse Store"} />
         <div className = "wrapper">
-            <Product className = "item" products={this.state.stock}/>
+            <Product className = "products" products={this.state.stock}/>
         </div>
       </div>
     );

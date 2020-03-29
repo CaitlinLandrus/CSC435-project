@@ -15,13 +15,24 @@ import { Link } from 'react-router-dom'
 
 const NavBar = (props) =>{
 
-
+    /**
+    * If the username and password are populated, it will show My Account link
+    *
+    * parameter: username and password
+    * return: Link to My Account
+    */
     function showAccountPage(username, password){
         if(username || password){
                 return <div className = "header-links"><Link to="/account" className='head-link'>My Account</Link></div>
         }
     }
 
+    /**
+    * If the username and password are populated, it will show Log Off, otherwise Sign In or Sign Up
+    *
+    * parameter: username and password
+    * return: Link to Log Off if not empty strings, otherise Link to Sign In and Sign Up pages
+    */
     function loginLogoff(username, password){
         if(username || password){
             return <div className = "header-links"><Link to="/logout" className='head-link'>Log Off</Link></div>
