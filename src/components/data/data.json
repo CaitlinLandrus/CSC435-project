@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "title":"Calculator",
+        "price":21.98,
+        "quantity":10,
+        "image": "./images/calculator.png"
+    },
+    {
+        "id": 2,
+        "title":"College Ruled Notebook",
+        "price":2.98,
+        "quantity":15,
+        "image": "./images/notebook.jpg"
+    },
+    {
+        "id": 3,
+        "title":"Folder",
+        "price":2.28,
+        "quantity":20,
+        "image": "./images/folder.jpg"
+    },
+    {
+        "id": 4,
+        "title":"Three Ring Binder",
+        "price":2.98,
+        "quantity":30,
+        "image": "./images/binder.jpg"
+    },
+    {
+        "id": 5,
+        "title":"Sticky Notes",
+        "price":1.45,
+        "quantity":60,
+        "image": "./images/sticky-note.jpg"
+    },
+    {
+        "id": 6,
+        "title":"400 Rubber Bands",
+        "price":5.99,
+        "quantity":40,
+        "image": "./images/rubber-band.jpg"
+    }
+]

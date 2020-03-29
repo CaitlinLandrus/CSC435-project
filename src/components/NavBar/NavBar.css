@@ -1,11 +1,40 @@
+.header{
+    background-color: black;
+    overflow: auto;
+    padding:5px;
+}
+
+.head-link-container{
+    float:right;
+    display: inline;
+}
+.header-links{
+    float: right;
+    display: inline;
+    line-height: 40px;
+    padding: 0 10px;
+    margin: 5px;
+}
+
+.head-link{
+    text-decoration: none;
+    color:white;
+}
+
+.head-link:hover{
+    color: #E6B220;
+}
+
 .title{
+    float: left;
+    text-align: left;
     height: 40px;
-    font-size: 2em;
+    font-size: 1.5em;
     line-height: 30px;
     background-color: black;
     color: white;
     overflow: hidden;
-    margin: 0;
+    margin: 5px;
     font-style: normal;
     font-weight: 300;
 }
@@ -105,6 +134,8 @@
         margin: 5px;
         font-size: 12px;
     }
+
+
 
 
 }

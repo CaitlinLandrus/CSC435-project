@@ -1,8 +1,8 @@
 /* All Devices */
-.App {
+/*.App {
   text-align: center;
 }
-
+*/
 .App-header {
   background-color: white;
   align-items: center;
@@ -12,6 +12,7 @@
   overflow: hidden;
   padding: 10px 0px 10px 0px;
   font-weight: 300;
+  text-align: center;
 }
 
 /* large Devices */

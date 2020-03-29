@@ -1,0 +1,25 @@
+.product {
+    display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+}
+
+.item{
+    height: 350px;
+    width: 300px;
+    text-align: center;
+    vertical-align: top;
+}
+
+
+.item img{
+    height: 250px;
+    max-width: 300px;
+}
+
+
+.item {
+  flex-grow: 1;
+  flex-basis: 300px;
+  margin: 20px;
+}

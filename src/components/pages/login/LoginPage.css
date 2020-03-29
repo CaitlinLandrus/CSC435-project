@@ -6,11 +6,13 @@
     margin-right: auto;
     border-top: 3px solid #E6B220;
     box-shadow: 4px 3px 10px 5px rgba(0,0,0,.45);
+    text-align: center;
 }
 
 .LoginPage-form{
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
 }
 
 label{
@@ -24,19 +26,7 @@ input{
     height: 2em;
 }
 
-button{
-    color: #003055;
-    background-color:#E6B220;
-    font-weight: bold;
-}
-
-button:hover{
-    color: #E6B220;
-    background-color:#003055;
-    font-weight: bold;
-}
-
-input, button, .create-account-link{
+input, .create-account-link{
     margin: 0px 0px 30px 0px;
 }
 
@@ -62,13 +52,6 @@ h3{
     .LoginPage-form{
         width: 70%;
     }
-
-
-    button{
-        width: 200px;
-        height: 50px;
-    }
-
 }
 
 /* mid-size screens */
@@ -86,16 +69,9 @@ h3{
         width: 80%;
     }
 
-    input, button, .create-account-link{
+    input, .create-account-link{
         margin: 0px 0px 20px 0px;
     }
-
-
-    button{
-        width: 200px;
-        height: 50px;
-    }
-
 }
 
 
@@ -115,13 +91,8 @@ h3{
         width: 80%;
     }
 
-    input, button, .create-account-link{
+    input, .create-account-link{
         margin: 0px 0px 10px 0px;
-    }
-
-    button{
-        width: 150px;
-        height: 50px;
     }
 
     /* This puts a link breake before 'Create an account link' */
