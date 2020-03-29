@@ -4,6 +4,15 @@ import Header from '../../PageElements/Header'
 import data from '../../data/data.json';
 import './ShopPage.css'
 
+/*
+    Written By: Caitlin Landrus
+    Course: 100 CSC 435 Advanced Web App Development,
+    Assignment: Week 3, Assignment 3
+    Created: 3/20/2020
+    Revised: 3/28/2020 - Formatted the Items on the page
+
+*/
+
 
 class ShopPage extends Component {
     componentDidMount = () => {

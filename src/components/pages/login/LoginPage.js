@@ -13,6 +13,7 @@ import  userData from '../../data/userData.json';
     Assignment: Week 2, Assignment 2
     Created: 3/15/2020
     Revised: 3/20/2020 - Submitted Login page and NavBar
+            3/28/2020 - Updated to send date to app.js, added validation to fields
 
     Summary: both general and admin users can login
         - header is the NavBar

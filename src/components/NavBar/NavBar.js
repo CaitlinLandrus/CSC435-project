@@ -23,7 +23,7 @@ const NavBar = (props) =>{
     */
     function showAccountPage(username, password){
         if(username || password){
-                return <div className = "header-links"><Link to="/account" className='head-link'>My Account</Link></div>
+            return <div className = "header-links"><Link to="/account" className='head-link'>My Account</Link></div>
         }
     }
 
@@ -46,6 +46,7 @@ const NavBar = (props) =>{
             )
         }
     }
+
     return(
         <div>
             <div className = "header">

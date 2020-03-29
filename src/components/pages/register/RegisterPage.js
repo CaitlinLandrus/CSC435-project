@@ -12,8 +12,10 @@ import './RegistrationPage.css';
     Course: 100 CSC 435 Advanced Web App Development,
     Assignment: Week 3, Assignment 3
     Created: 3/22/2020
+    Revised: 3/28/2020 - Added validation to fields
 
-    Summary:
+    Summary: both general and admin users can register
+
 */
 
 class RegisterPage extends Component {
@@ -63,9 +65,6 @@ class RegisterForm extends Component{
     /** Form Constructor */
     constructor(props) {
         super(props);
-
-        //Referenced: https://www.youtube.com/watch?v=qH4pJISKeoI
-        //will likely need to track error state?
         this.state = initialState;
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -88,7 +87,7 @@ class RegisterForm extends Component{
         this.setState( prevState => {
            return {
               user : {
-                  //unpacking ?
+                  //unpacking
                        ...prevState.user, [name]: value
                       }
            }
@@ -193,7 +192,7 @@ class RegisterForm extends Component{
 
         if(isValid){
             //pass the state to the RegistrationPage
-            this.props.onSubmit(this.state) //passes the state to the RegistrationPage
+            this.props.onSubmit(this.state) 
 
             //resets the fields to blank
             this.setState(initialState);

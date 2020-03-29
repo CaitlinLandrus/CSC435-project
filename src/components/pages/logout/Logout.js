@@ -20,9 +20,6 @@ class Logout extends Component{
     /** Form Constructor */
     constructor(props) {
         super(props);
-
-        //Referenced: https://www.youtube.com/watch?v=qH4pJISKeoI
-        //will likely need to track error state?
         this.state  ={
             username: '',
             password: '',
@@ -44,13 +41,11 @@ class Logout extends Component{
 
     };
 
-
     render() {
         return(
             <div className = "logoff">
                 <Header header={"Log Off"} />
                 <div className = "LoginPage-form-container">
-
 
                     <form className = "LoginPage-form" onSubmit={this.handleLogout}>
                         <p> Are you sure you want to sign out?</p>
@@ -62,7 +57,6 @@ class Logout extends Component{
                     </form>
                 </div>
             </div>
-        //    <button type = "submit" onClick={this.logout}>Log Out</button>
         );
     }
 }
