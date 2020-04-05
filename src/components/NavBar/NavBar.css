@@ -44,7 +44,7 @@
     background-color: #003055;
     width: 100%;
     height: 80px;
-    overflow: auto;
+    overflow: hidden;
 }
 
 .logo{
