@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './LoginPage.css';
 import  Button  from '../../FormFields/Button'
 import  Input  from '../../FormFields/Input'
-import  Error  from '../../Error/Error'
+import  Error  from '../../Alert/Error'
 import  Header  from '../../PageElements/Header'
 import { Link } from 'react-router-dom'
 import  userData from '../../data/userData.json';
@@ -72,12 +72,12 @@ class LoginPage extends Component{
 
         //username is empty
         if(!this.state.username){
-            usernameError = '* Username is required';
+            usernameError = 'Username is required';
         }
 
         //password is empty
         if(!this.state.password){
-            passwordError = '* Password is required';
+            passwordError = 'Password is required';
         }
 
         //checks if the username and password exsits in the json object
@@ -92,7 +92,7 @@ class LoginPage extends Component{
         //if the username and password do not exist in the json, update error message
         //only if the username and password have been populated.
         if(!contains && this.state.password && this.state.username){
-            invalidLogin = "* Invalid username or password"
+            invalidLogin = "Invalid username or password"
         }
 
         //update error state if there are any errors
@@ -121,12 +121,12 @@ class LoginPage extends Component{
         Result: passes the state to parent via props, resets state to empty fields
     */
     handleSubmit = (e) =>{
-        console.log(e);
+        //console.log(e);
         //prevent default prefents the default behavior or refreshing the page on submit
         e.preventDefault()
         const isValid = this.validateUser();
 
-        console.log(isValid)
+        //console.log(isValid)
         //if the user is valid, send data to parent and clear fields
         if(isValid){
             //pass the state to App.js
@@ -146,7 +146,7 @@ class LoginPage extends Component{
 
                     <form className = "LoginPage-form" onSubmit={this.handleSubmit}>
 
-                        <Error>{this.state.error.invalidLogin} <br/></Error>
+                        <Error>{this.state.error.invalidLogin}</Error>
 
                         {/* Username -- calls handleChange() method when user types to update state */}
                         <Input

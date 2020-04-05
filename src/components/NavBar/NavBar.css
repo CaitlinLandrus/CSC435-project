@@ -70,6 +70,13 @@
     background-color: #E6B220;
 }
 
+.cart-icon{
+    color: white;
+}
+.label{
+    width: 40px;
+}
+
 
 /* Large Screens */
 @media only screen and (min-width: 789px){

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Button  from '../../FormFields/Button'
 import Input  from '../../FormFields/Input'
 import Select  from '../../FormFields/Select'
-import Error  from '../../Error/Error'
+import Error  from '../../Alert/Error'
 import Header from '../../PageElements/Header'
 import './RegistrationPage.css';
 
@@ -110,46 +110,46 @@ class RegisterForm extends Component{
 
         //Validate Type is populated
         if(!this.state.user.type){
-            typeError = '* Account Type is required';
+            typeError = 'Account Type is required';
         }
 
         //Validate first name is populated
         if(!this.state.user.username){
-            usernameError = '* Username is required';
+            usernameError = 'Username is required';
         }
 
         //Validate first name is populated
         if(!this.state.user.firstName){
-            firstNameError = '* First Name is required';
+            firstNameError = 'First Name is required';
         }
 
         //Validate first name is populated
         if(!this.state.user.lastName){
-            lastNameError = '* Last Name is required';
+            lastNameError = 'Last Name is required';
         }
 
         //Validate email is populated
         if(!this.state.user.email){
-            emailError = '* Email is required';
+            emailError = 'Email is required';
         }
 
         //Validate password is populated
         if(!this.state.user.password){
-            passwordError = '* Password is required';
+            passwordError = 'Password is required';
         }        //Validate password is populated
                 if(!this.state.user.password){
-                    passwordError = '* Password is required';
+                    passwordError = 'Password is required';
                 }
 
 
         //Confirm password is populated
         if(!this.state.user.confirmPassword){
-            confirmPasswordError = '* Confirm Password is required';
+            confirmPasswordError = 'Confirm Password is required';
         }
 
         //Confirm password matches actual password
         if(this.state.user.password !== this.state.user.confirmPassword){
-            confirmPasswordError = '* Passwords do not match';
+            confirmPasswordError = 'Passwords do not match';
         }
 
         //update error state if there are any errors
@@ -192,7 +192,7 @@ class RegisterForm extends Component{
 
         if(isValid){
             //pass the state to the RegistrationPage
-            this.props.onSubmit(this.state) 
+            this.props.onSubmit(this.state)
 
             //resets the fields to blank
             this.setState(initialState);

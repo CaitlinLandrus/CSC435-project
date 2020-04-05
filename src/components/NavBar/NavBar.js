@@ -1,6 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import './NavBar.css';
 import { Link } from 'react-router-dom'
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import {CartContext} from '../pages/cart/CartContext';
+import Badge from '@material-ui/core/Badge';
+import { withStyles } from '@material-ui/core/styles';
+
 
 /*
     Written By: Caitlin Landrus
@@ -12,8 +17,17 @@ import { Link } from 'react-router-dom'
 
 */
 
+const StyledBadge = withStyles((theme) => ({
+  badge: {
+    right: -3,
+    top: 13,
+
+  },
+}))(Badge)
 
 const NavBar = (props) =>{
+    const [cart] = useContext(CartContext);
+    //const totalPrice = cart.reduce((initialPrice, current) => initialPrice + current.price, 0)
 
     /**
     * If the username and password are populated, it will show My Account link
@@ -60,7 +74,13 @@ const NavBar = (props) =>{
             <img src="logo2.png" alt="csp store"  className = "logo"/>
                 <div className="link-container">
                     <div className = "links"><Link to="/" className='text-link' >Shop</Link></div>
-                    <div className = "links"><Link to="/cart" className='text-link' >Cart</Link></div>
+                    <div className = "links">
+                        <Link to="/cart" className='text-link' >
+                            <StyledBadge badgeContent={cart.length} color="secondary">
+                                <ShoppingCartIcon fontSize="default" className = "cart-icon" />
+                            </StyledBadge>
+                        </Link>
+                    </div>
                 </div>
             </nav>
         </div>

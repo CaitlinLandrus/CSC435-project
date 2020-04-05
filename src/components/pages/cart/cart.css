@@ -1,0 +1,46 @@
+.cart{
+    text-align: center;
+    align-items: center;
+
+}
+.card-empty-cart{
+    width: 80%;
+    height: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-top: 3px solid #E6B220;
+    box-shadow: 4px 3px 10px 5px rgba(0,0,0,.45);
+}
+
+#grid-container{
+    border-top: 3px solid #E6B220;
+    box-shadow: 4px 3px 10px 5px rgba(0,0,0,.45);
+
+}
+
+.card-empty-content{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.item-container{
+    border: none;
+}
+
+img{
+    margin-bottom: 15px;
+}
+
+.link{
+    text-decoration: none;
+}
+
+.delete-button{
+    width: 50px;
+}
+
+.checkout-button{
+    margin-bottom: 20px;
+}

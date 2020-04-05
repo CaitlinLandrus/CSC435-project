@@ -7,6 +7,9 @@ import Login from './components/pages/login/LoginPage';
 import Logout from './components/pages/logout/Logout';
 import RegisterPage from './components/pages/register/RegisterPage';
 import AccountPage from './components/pages/account/AccountPage';
+import Cart from './components/pages/cart/Cart';
+
+import {CartProvider} from './components/pages/cart/CartContext';
 
 
 class App extends Component{
@@ -37,9 +40,36 @@ class App extends Component{
         )
     }
 
+    updatePass = (newPassword) =>{
+        //update the state of the applications password
+        return(
+            this.setState({
+                password: newPassword
+            })
+        )
+    }
+
+    updateUser = (newUsername) =>{
+        //update the state of the applications username
+        return(
+            this.setState({
+                username: newUsername
+            })
+        )
+    }
+
+    updateCart = (cart) =>{
+        return(
+            this.setState({
+                cart: cart
+            })
+        )
+    }
+
     render(){
       return (
           /* Routes the user to the given page */
+         <CartProvider>
         <Router>
             <div className="App">
                 {/*//Reference on using Routes https://github.com/morchf/react-login-form/blob/master/src/App.js */}
@@ -48,9 +78,12 @@ class App extends Component{
                 <Route path="/login"><Login callback={this.login.bind(this)}/></Route>
                 <Route path="/logout"><Logout callback={this.logoff.bind(this)}/></Route>
                 <Route path="/register" ><RegisterPage /> </Route>
-                <Route path="/account" ><AccountPage username = {this.state.username} password = {this.state.password}  /> </Route>
+                <Route path="/cart" ><Cart /> </Route>
+                <Route path="/account" ><AccountPage key={1} username = {this.state.username} password = {this.state.password} callbackPass={this.updatePass.bind(this)} callbackUser={this.updateUser.bind(this)} /> </Route>
+                
             </div>
         </Router>
+        </CartProvider>
 
       );
   }

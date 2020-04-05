@@ -1,0 +1,20 @@
+[
+    {
+        "userID": 0,
+        "type": "Student",
+        "firstName":"Caitlin",
+        "lastName":"Landrus",
+        "email": "landrusc@csp.edu",
+        "username":"caitlin.landrus",
+        "password": "testing"
+    },
+    {
+        "userID": 1,
+        "type": "Administrator",
+        "firstName":"Jeremy",
+        "lastName":"Kukowski",
+        "email": "testEmail@gmail.com",
+        "username":"jeremy.kukowski",
+        "password": "testing2"
+    }
+]

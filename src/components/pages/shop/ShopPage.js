@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Product from '../../Product/Product'
 import Header from '../../PageElements/Header'
 import data from '../../data/data.json';
-import './ShopPage.css'
+
 
 /*
     Written By: Caitlin Landrus
@@ -31,7 +31,7 @@ class ShopPage extends Component {
             stock:data
         }
 
-        console.log(this.state);
+        //console.log(this.state);
     }
 
   render() {

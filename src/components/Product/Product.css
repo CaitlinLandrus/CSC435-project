@@ -5,7 +5,7 @@
 }
 
 .item{
-    height: 350px;
+    height: 450px;
     width: 300px;
     text-align: center;
     vertical-align: top;
@@ -22,4 +22,9 @@
   flex-grow: 1;
   flex-basis: 300px;
   margin: 20px;
+}
+#card-container{
+    border-top: 3px solid #E6B220;
+    box-shadow: 4px 3px 10px 5px rgba(0,0,0,.45);
+    width: 100%;
 }
