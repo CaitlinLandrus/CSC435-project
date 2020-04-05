@@ -9,11 +9,25 @@ import Box from '@material-ui/core/Box';
 import './cart.css'
 import { Link } from "react-router-dom";
 
+/*
+    Written By: Caitlin Landrus
+    Course: 100 CSC 435 Advanced Web App Development,
+    Assignment: Week 4, Assignment 4
+    Created: 3/30/2020
+    Revised: 
+
+*/
+
 
 const Cart = () =>{
     const [cart, setCart] = useContext(CartContext);
     const totalPrice = cart.reduce((initialPrice, current) => initialPrice + current.price, 0)
 
+    /*
+    * Shows the contents of the cart if there are items in the cart.
+    * Otherwise it shows a message that the cart is empty and gives a "Shop Stor Now"
+    * button that links to the online store
+    */
     function showProducts(){
         console.log(cart);
         if(cart.length>0){
@@ -65,6 +79,9 @@ const Cart = () =>{
       }
     }
 
+    /*
+    * Shows the Checkout Now button only if there are items in the cart
+    */
     function showButton(){
         if(cart.length > 0){
             return(

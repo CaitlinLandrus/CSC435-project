@@ -5,7 +5,14 @@ import Input  from '../../FormFields/Input'
 import Error  from '../../Alert/Error'
 import Success  from '../../Alert/Success'
 
+/*
+    Written By: Caitlin Landrus
+    Course: 100 CSC 435 Advanced Web App Development,
+    Assignment: Week 4, Assignment 4
+    Created: 3/30/2020
+    Revised:
 
+*/
 
 class AccountPage extends Component {
 

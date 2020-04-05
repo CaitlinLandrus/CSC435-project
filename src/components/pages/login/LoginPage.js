@@ -121,12 +121,10 @@ class LoginPage extends Component{
         Result: passes the state to parent via props, resets state to empty fields
     */
     handleSubmit = (e) =>{
-        //console.log(e);
         //prevent default prefents the default behavior or refreshing the page on submit
         e.preventDefault()
         const isValid = this.validateUser();
 
-        //console.log(isValid)
         //if the user is valid, send data to parent and clear fields
         if(isValid){
             //pass the state to App.js

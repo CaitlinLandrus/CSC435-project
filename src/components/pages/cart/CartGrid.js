@@ -22,8 +22,6 @@ const styles = theme => ({
 });
 
 
-
-
 const CartGrid = (props) => {
   const { classes } = props;
 
