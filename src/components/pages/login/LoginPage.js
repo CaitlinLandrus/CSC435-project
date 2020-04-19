@@ -14,13 +14,13 @@ import  userData from '../../data/userData.json';
     Created: 3/15/2020
     Revised: 3/20/2020 - Submitted Login page and NavBar
             3/28/2020 - Updated to send date to app.js, added validation to fields
+            4/9/2020 - Updated to use redux loginAction and profile
 
     Summary: both general and admin users can login
         - header is the NavBar
         - title included in Nav Bar
         - page title is the h2 tag
 */
-
 
 
 const initialState = {
@@ -41,6 +41,10 @@ class LoginPage extends Component{
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+    }
+
+    componentDidMount = () => {
+       document.title = 'Sign In | CSP Store';
     }
 
 
@@ -69,6 +73,7 @@ class LoginPage extends Component{
         let passwordError = '';
         let invalidLogin = '';
         let contains = false;
+        let validUser = {};
 
         //username is empty
         if(!this.state.username){
@@ -85,6 +90,8 @@ class LoginPage extends Component{
             userData.forEach((user)=>{
                 if(user.username === this.state.username && user.password === this.state.password){
                     contains = true;
+                    validUser = user;
+                    //console.log("ValidUser",validUser)
                 }
             })
         }
@@ -110,7 +117,7 @@ class LoginPage extends Component{
             return false;
         }
         //username and password match
-        return true;
+        return validUser;
     }
 
     /*  This is outputting the state of our fields to the console for now.
@@ -123,12 +130,23 @@ class LoginPage extends Component{
     handleSubmit = (e) =>{
         //prevent default prefents the default behavior or refreshing the page on submit
         e.preventDefault()
-        const isValid = this.validateUser();
+        const isValidUser = this.validateUser();
 
         //if the user is valid, send data to parent and clear fields
-        if(isValid){
+        if(isValidUser){
             //pass the state to App.js
-            this.props.callback(this.state)
+            //this.props.callback(this.state)
+
+            //passes the user data to the redux login action
+            this.props.loginAction(
+                isValidUser.userID,
+                isValidUser.type,
+                isValidUser.firstName,
+                isValidUser.lastName,
+                isValidUser.email,
+                isValidUser.username,
+                isValidUser.password
+            )
 
             //resets the fields to blank
             this.setState(initialState)

@@ -1,6 +1,9 @@
 .cart{
     text-align: center;
     align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    width:95%;
 
 }
 .card-empty-cart{
@@ -42,5 +45,30 @@ img{
 }
 
 .checkout-button{
+    clear: both;
     margin-bottom: 20px;
+}
+
+.right{
+    float:right;
+}
+.left{
+    float:left;
+}
+
+#itemSummary{
+    width: 70%;
+}
+
+
+#orderSummary{
+    width: 30%;
+    border-top: 3px solid #E6B220;
+    box-shadow: 4px 3px 10px 5px rgba(0,0,0,.45);
+    margin-top: 16px;
+
+}
+
+.column-header{
+    font-weight: bold;
 }

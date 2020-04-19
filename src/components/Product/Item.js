@@ -32,20 +32,73 @@ const Item =(props) =>{
     const classes = useStyles();
     const [cart, setCart] = useContext(CartContext);
 
-
-    const addToCart = ()=>{
+    const addToCart = () => {
+        
         //build object
         const item ={
-            key: cart.length, //keeps the items unique for now
+            key: props.id,
             id: props.id,
             title: props.title,
             price: props.price,
-            quantity: props.quantity,
-            image: props.image
+            availQuantity: props.quantity,
+            image: props.image,
+            purchQuantity: 1
          };
+        const existingProductIndex = cart.findIndex(i => i.id === item.id);
 
-        //add item object to current cart
-        setCart(currentCart => [...currentCart, item]);
+        //if item is in cart already, increase the purchQuantity
+        if(existingProductIndex >= 0){
+            //create a clone of our cart
+            const cartProducts = cart.slice();
+
+            //get the time we found with findIndex
+            const existingProduct = cartProducts[existingProductIndex];
+
+            //update the purchase quantity
+            const updatePurchQunt ={
+                ...existingProduct,
+                purchQuantity: existingProduct.purchQuantity + item.purchQuantity
+            };
+            cartProducts[existingProductIndex] = updatePurchQunt;
+
+            //set our cart to the new cloned cart with the updated quantity
+            setCart(cartProducts)
+        }
+        else{
+            //append item to current cart
+            setCart(currentCart => [...currentCart, item]);
+        }
+    }
+
+    /**
+    * Diables the Add To Cart button when all available quantity is in the cart
+    */
+    function addToCartButton(){
+        const existingProduct = cart.filter(i => i.id === props.id);
+
+        if(existingProduct.length > 0 && existingProduct[0].purchQuantity < props.quantity){
+            return(
+                <Button variant="outlined" color="primary" onClick={addToCart}>
+                   Add to Cart
+                 </Button>
+            )
+        }
+        else if(existingProduct.length === 0 && props.quantity > 0){
+            return(
+                <Button variant="outlined" color="primary" onClick={addToCart}>
+                   Add to Cart
+                 </Button>
+            )
+        }
+        else{
+            //there purchQuantity == availQuantity or availQuantity == 0
+            return(
+                <Button disabled>
+                   Sold Out
+                 </Button>
+             )
+        }
+
     }
 
     return (
@@ -60,17 +113,14 @@ const Item =(props) =>{
                 />
               </div>
 
-        <CardContent>
-            <Typography gutterBottom variant="subtitle1" component="p">
-                {props.title}<br/>
-                ${props.price}<br/>
-            </Typography>
-        </CardContent>
+            <CardContent>
+                <Typography gutterBottom variant="subtitle1" component="p">
+                    {props.title}<br/>
+                    ${props.price}<br/>
+                </Typography>
+            </CardContent>
 
-
-        <Button variant="outlined" color="primary" onClick={addToCart}>
-           Add to Cart
-         </Button>
+            {addToCartButton()}
          </div>
       </Card >
      // </Link>

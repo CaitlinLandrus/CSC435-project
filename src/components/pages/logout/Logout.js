@@ -8,7 +8,7 @@ import  Header  from '../../PageElements/Header'
     Course: 100 CSC 435 Advanced Web App Development,
     Assignment: Week 3, Assignment 3
     Created: 3/28/2020
-    Revised:
+    Revised: 4/9/2020 - Updated to use Redux logoffAction and profile
 
 */
 
@@ -20,11 +20,7 @@ class Logout extends Component{
     /** Form Constructor */
     constructor(props) {
         super(props);
-        this.state  ={
-            username: '',
-            password: '',
-            navigate: false
-        };
+
 
         this.handleLogout = this.handleLogout.bind(this);
     }
@@ -33,11 +29,13 @@ class Logout extends Component{
     * Sends the empty username and password back to app.js
     */
     handleLogout = (e) => {
-        console.log(e);
-        this.setState({
-            navigate: true
-        });
-        this.props.callback(this.state.username, this.state.password);
+        //prevents refresh of the page on submit
+        e.preventDefault()
+
+        //passes the user data to the redux logoff action
+        this.props.logoffAction(
+            this.props.profile.userID
+        )
 
     };
 
