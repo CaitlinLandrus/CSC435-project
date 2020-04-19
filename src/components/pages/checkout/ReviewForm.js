@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {CartContext} from '../cart/CartContext';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -30,14 +30,29 @@ const ReviewForm =(props) =>{
       const [cart] = useContext(CartContext);
       const total = cart.reduce((initialPrice, current) => initialPrice + (current.price * current.purchQuantity), 0)
       const totalPrice = Number(total).toFixed(2); //used to convert to only 2 decimal places
-
+/*
       const addresses = ['1 Material-UI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
-const payments = [
-  { name: 'Card type', detail: 'Visa' },
-  { name: 'Card holder', detail: 'Mr John Smith' },
-  { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
-  { name: 'Expiry date', detail: '04/2024' },
-];
+    const payments = [
+      { name: 'Card type', detail: 'Visa' },
+      { name: 'Card holder', detail: 'Mr John Smith' },
+      { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
+      { name: 'Expiry date', detail: '04/2024' },
+    ];
+*/
+
+    const [addresses] = useState( ['1 Material-UI Drive', 'Reactville', 'Minnesota', '99999']);//);
+
+    const [payments] = useState([
+        { name: 'Card Type', detail: 'Visa' },
+        { name: 'Card Holder', detail: 'John Doe' },
+        { name: 'Card Number', detail: 'xxxx-xxxx-xxxx-1234' },
+        { name: 'Expiry Date', detail: '04/2024' },
+    ]);
+
+    const [shipUser] = useState({
+            name: "John Doe"
+    })
+    
     return (
         <React.Fragment>
         <Grid container spacing={2}>
@@ -46,7 +61,7 @@ const payments = [
               Shipping Information
             </Typography>
             <Typography gutterBottom>
-              John Smith
+              {shipUser.name}
               </Typography>
             <Typography gutterBottom>{addresses.join(', ')}</Typography>
           </Grid>
