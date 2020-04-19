@@ -69,7 +69,7 @@ export default function  profileReducter(state = INITIAL_STATE, action ={}){
             break;
         }
         default:{
-            
+
             break;
         }
     }

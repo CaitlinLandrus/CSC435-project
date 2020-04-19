@@ -63,6 +63,9 @@ const useStyles = makeStyles((theme) => ({
 
     const steps = ['Shipping Address', 'Payment Details', 'Review Order'];
 
+    /**
+    * Displays the form for the given step
+    */
     function getStepContent(step) {
         switch (step) {
             case 0:
@@ -99,16 +102,15 @@ const Checkout = () =>{
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(0);
 
+    /* Increments the current step*/
     const handleNext = () => {
         setActiveStep(activeStep + 1);
     };
 
+    /* Decrements the current step*/
     const handleBack = () => {
         setActiveStep(activeStep - 1);
     };
-
-
-
 
     return(
         <div className="checkout">
@@ -124,6 +126,7 @@ const Checkout = () =>{
                             ))}
                         </Stepper>
                     <React.Fragment>
+                        {/*Displays a message about the order number when the form is complete*/}
                         {activeStep === steps.length ? (
                             <React.Fragment>
                                 <Typography variant="h5" gutterBottom>
@@ -131,7 +134,7 @@ const Checkout = () =>{
                                 </Typography>
 
                                 <Typography variant="subtitle1">
-                                    Your order number is #2001539. We have emailed your order confirmation, and will
+                                    Your order number is #1234567. We have emailed your order confirmation, and will
                                     send you an update when your order has shipped.
                                 </Typography>
                             </React.Fragment>
