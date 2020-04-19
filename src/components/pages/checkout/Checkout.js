@@ -89,7 +89,7 @@ const Checkout = () =>{
       return function cleanup(){
           console.log("Cleanup function called on unmount")
       }
-  }, []);
+    }, []);
 
     //const [shipUser, setShipUser] = useState({firstName:'', lastName:''});
     //const [shipAddress, setShipAddress] = useState({address1:'', address2:'', city:'', state:'', zip:''});

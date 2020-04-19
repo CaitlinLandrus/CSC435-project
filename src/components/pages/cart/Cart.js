@@ -16,6 +16,7 @@ import OrderSummary from './OrderSummary'
     Assignment: Week 4, Assignment 4
     Created: 3/30/2020
     Revised: 4/13/2020
+             4/19/2020 - Updated useEffect hook
 
 */
 
@@ -29,8 +30,13 @@ const Cart = (props) =>{
     useEffect(() => {
       // Update the document title using the browser API
       document.title = `My Cart | CSP Store`;
-    });
 
+      console.log("This is only called on initial mounting");
+
+      return function cleanup(){
+          console.log("Cleanup function called on unmount")
+      }
+    }, []);
     /*
     * Shows the contents of the cart if there are items in the cart.
     * Otherwise it shows a message that the cart is empty and gives a "Shop Stor Now"
