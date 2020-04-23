@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component , useEffect } from 'react';
 import './LoginPage.css';
 import  Button  from '../../FormFields/Button'
 import  Input  from '../../FormFields/Input'
@@ -6,6 +6,7 @@ import  Error  from '../../Alert/Error'
 import  Header  from '../../PageElements/Header'
 import { Link } from 'react-router-dom'
 import  userData from '../../data/userData.json';
+
 
 /*
     Written By: Caitlin Landrus
@@ -34,6 +35,7 @@ const initialState = {
 }
 
 class LoginPage extends Component{
+
     /** Form Constructor */
     constructor() {
         super();
@@ -43,9 +45,7 @@ class LoginPage extends Component{
         this.handleChange = this.handleChange.bind(this);
     }
 
-    componentDidMount = () => {
-       document.title = 'Sign In | CSP Store';
-    }
+
 
 
     /*

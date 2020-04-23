@@ -5,6 +5,7 @@ import Select  from '../../FormFields/Select'
 import Error  from '../../Alert/Error'
 import Header from '../../PageElements/Header'
 import './RegistrationPage.css';
+import api from './../../../api'
 
 
 /*
@@ -23,6 +24,16 @@ class RegisterPage extends Component {
     componentDidMount() {
        document.title = 'Create Account | CSP Store';
     }
+
+
+    componentDidMount = async () => {
+        document.title = 'Update Account | CSP Store';
+
+        await api.getAllUsers().then(users => {
+            console.log(users.data.data)
+        })
+  }
+
     onSubmit = (data) => {
         console.log("Regiser page submitted: " , data)
     };
@@ -193,10 +204,21 @@ class RegisterForm extends Component{
         if(isValid){
             //pass the state to the RegistrationPage
             this.props.onSubmit(this.state)
+            this.handleCreateUser();
 
             //resets the fields to blank
             this.setState(initialState);
         }
+    }
+
+
+    handleCreateUser = async() =>{
+          const { type, username, password, firstName,lastName, email } = this.state.user
+          const payload = {type, firstName, lastName, email, username, password}
+
+          await api.insertUser(payload).then(res => {
+            window.alert(`User inserted successfully`)
+        })
     }
 
     render(){

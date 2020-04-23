@@ -7,6 +7,7 @@ import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import reducers from "./redux/reducers"
 
+
 //create our Redux Store
 //https://www.youtube.com/watch?v=XtoGnn8At7g
 const store = createStore(reducers);
