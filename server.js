@@ -14,10 +14,9 @@ const PORT = process.env.PORT || 8080
 const routes = require('./routes')
 
 //Connect DB
-mongoose.connect( 'mongodb://heroku_vqxcqjgz:munoujtev3548qjo6rmk10uk7r@ds139844.mlab.com:39844/heroku_vqxcqjgz'
-                || 'mongodb://localhost/applicationdb', {
-    useNewUrlParser: true
-});
+const db = require('./backend/db')
+db.on('error', console.error.bind(console, 'MongoDB connection error:'))
+
 
 //Configuration
 app.use(bodyParser.json())
