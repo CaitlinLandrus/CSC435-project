@@ -14,7 +14,8 @@ const PORT = process.env.PORT || 8080
 const routes = require('./routes')
 
 //Connect DB
-mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost/applicationdb', {
+mongoose.connect( ' mongodb://heroku_vqxcqjgz:munoujtev3548qjo6rmk10uk7r@ds139844.mlab.com:39844/heroku_vqxcqjgz'
+                || 'mongodb://localhost/applicationdb', {
     useNewUrlParser: true
 });
 
