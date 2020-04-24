@@ -14,9 +14,9 @@ const PORT = process.env.PORT || 8080
 const routes = require('./routes')
 
 //Connect DB
-const db = require('./backend/db')
-db.on('error', console.error.bind(console, 'MongoDB connection error:'))
-
+mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost/applicationdb', {
+    useNewUrlParser: true
+});
 
 //Configuration
 app.use(bodyParser.json())
