@@ -6,7 +6,7 @@ import Error  from '../../Alert/Error'
 import Header from '../../PageElements/Header'
 import './RegistrationPage.css';
 import api from './../../../api'
-
+import axios from 'axios';
 
 /*
     Written By: Caitlin Landrus
@@ -29,10 +29,19 @@ class RegisterPage extends Component {
     componentDidMount = async () => {
         document.title = 'Update Account | CSP Store';
 
-        await api.getAllUsers().then(users => {
-            console.log(users.data.data)
-        })
+        //await api.getAllUsers().then(users => {
+        //    console.log(users.data.data)
+        //})
+
+        // Print the users in the databaase
+        axios.get('/api/users')
+          .then((response) => {
+            const { users } = response.data;
+            console.log(users)
+          })
+          .catch(() => alert('Error fetching new users'));
   }
+
 
     onSubmit = (data) => {
         console.log("Regiser page submitted: " , data)
@@ -216,9 +225,23 @@ class RegisterForm extends Component{
           const { type, username, password, firstName,lastName, email } = this.state.user
           const payload = {type, firstName, lastName, email, username, password}
 
-          await api.insertUser(payload).then(res => {
-            window.alert(`User inserted successfully`)
+          //await api.insertUser(payload).then(res => {
+            //window.alert(`User inserted successfully`)
+        //})
+        axios({
+            url: '/api/createUser',
+            method: 'POST',
+            data: payload
         })
+        .then(() => {
+            console.log('Data has been sent to the server');
+
+        })
+        .catch((error) => {
+            console.log('Internal server error');
+        });;
+
+
     }
 
     render(){

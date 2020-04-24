@@ -1,7 +1,16 @@
 import axios from 'axios'
 
+let url ='';
+
+if(process.env.NODE_ENV ==='production'){
+    url = 'https://csc435-caitlin-app.herokuapp.com/api'
+}
+else{
+    url= 'mongodb://localhost:5000/applicationdb'
+}
+
 const api = axios.create({
-    baseURL: 'http://localhost:3000/api',
+    baseURL: url,
 })
 
 export const insertUser = payload => api.post(`/user`, payload)

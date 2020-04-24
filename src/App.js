@@ -32,7 +32,7 @@ class App extends Component{
                 {/*//Reference on using Routes https://github.com/morchf/react-login-form/blob/master/src/App.js */}
                 <NavBar profile = {profile}  />
                 <Route exact path="/"><ShopPage /> </Route>
-                <Route exact path="/"><ManageStore /> </Route>
+                <Route exact path="/manage"><ManageStore /> </Route>
                 <Route path="/login"><Login loginAction = {loginAction} /></Route>
                 <Route path="/logout"><Logout profile ={profile} logoffAction={logoffAction}/></Route>
                 <Route path="/register" ><RegisterPage /> </Route>

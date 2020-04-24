@@ -1,16 +1,39 @@
-//this is my node server
-const express = require('express')
-const path = require('path')
-const PORT = process.env.PORT || 5000
+//Import Modules
+const express = require('express');
+const path = require('path');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const cors = require('cors')
+
+//Global Variables
+const app = express()
+const PORT = process.env.PORT || 8080
 
 
-//used youtube.com/watch?v=NX3jqtwfzVY as reference on the path and react side
-var app = express()
+//Import Files
+const routes = require('./routes')
 
-app.use(express.static(path.join(__dirname, 'build')))
-app.set('build', path.join(__dirname, 'index.html'))
-app .set('view engine', 'ejs')
-app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-})
-app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
+//Connect DB
+const db = require('./backend/db')
+db.on('error', console.error.bind(console, 'MongoDB connection error:'))
+
+
+//Configuration
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use('/', routes);
+
+
+//if(process.env.NODE_ENV ==='production'){
+
+    app.use(express.static(path.join(__dirname, 'build')))
+    app.set('build', path.join(__dirname, 'index.html'))
+    app .set('view engine', 'ejs')
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    })
+
+//}
+
+
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
