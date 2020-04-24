@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 8080
 const routes = require('./routes')
 
 //Connect DB
-const db = require('./backend/db')
+const db = require('./backend/DB')
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 
