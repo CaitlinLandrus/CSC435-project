@@ -1,6 +1,5 @@
 import React,{useContext} from 'react';
 import {CartContext} from './CartContext';
-import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';

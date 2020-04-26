@@ -5,7 +5,6 @@ import Select  from '../../FormFields/Select'
 import Error  from '../../Alert/Error'
 import Header from '../../PageElements/Header'
 import './RegistrationPage.css';
-import api from './../../../api'
 import axios from 'axios';
 
 /*
@@ -14,6 +13,7 @@ import axios from 'axios';
     Assignment: Week 3, Assignment 3
     Created: 3/22/2020
     Revised: 3/28/2020 - Added validation to fields
+             4/23/2019 - Added connection to MongoDB
 
     Summary: both general and admin users can register
 
@@ -27,21 +27,25 @@ class RegisterPage extends Component {
 
 
     componentDidMount = async () => {
-        document.title = 'Update Account | CSP Store';
+        // Print the users in the databaase
+        axios.get('/api/users')
+          .then((response) => {
+            const { users } = response.data;
+            console.log("Users on Mount", users)
+          })
+          .catch(() => alert('Error fetching new users'));
+   }
 
-        //await api.getAllUsers().then(users => {
-        //    console.log(users.data.data)
-        //})
+    componentWillUnmount  = async () => {
 
         // Print the users in the databaase
         axios.get('/api/users')
           .then((response) => {
             const { users } = response.data;
-            console.log(users)
+            console.log("Users on Unmount", users)
           })
           .catch(() => alert('Error fetching new users'));
-  }
-
+    }
 
     onSubmit = (data) => {
         console.log("Regiser page submitted: " , data)

@@ -35,7 +35,7 @@ export default function  profileReducter(state = INITIAL_STATE, action ={}){
                 "password": user.password
             };
             return profile;
-            break;
+    
         }
 
         case LOG_OFF:{

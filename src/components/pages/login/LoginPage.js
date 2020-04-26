@@ -1,4 +1,4 @@
-import React, { Component , useEffect } from 'react';
+import React, { Component } from 'react';
 import './LoginPage.css';
 import  Button  from '../../FormFields/Button'
 import  Input  from '../../FormFields/Input'
