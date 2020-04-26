@@ -224,7 +224,9 @@ class RegisterForm extends Component{
         }
     }
 
-
+    /**
+    * Posts the user information as a new user into the users collection in my mongoDB
+    */
     handleCreateUser = async() =>{
           const { type, username, password, firstName,lastName, email } = this.state.user
           const payload = {type, firstName, lastName, email, username, password}
