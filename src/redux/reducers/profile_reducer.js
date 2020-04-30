@@ -22,7 +22,7 @@ const INITIAL_STATE={
 export default function  profileReducter(state = INITIAL_STATE, action ={}){
     switch(action.type){
         case LOGIN:{
-            console.log(action)
+            //console.log(action)
             const user = action.payload;
             //update the state with the passed user data
             const profile = {
@@ -35,11 +35,11 @@ export default function  profileReducter(state = INITIAL_STATE, action ={}){
                 "password": user.password
             };
             return profile;
-    
+
         }
 
         case LOG_OFF:{
-            console.log(action)
+            //console.log(action)
             const user = action.payload;
 
             //clear the state values
@@ -50,7 +50,7 @@ export default function  profileReducter(state = INITIAL_STATE, action ={}){
         }
 
         case UPDATE_ACCOUNT:{
-            console.log(action)
+            //console.log(action)
             const user = action.payload;
             if(state.userID === user.userID){
                 //update profile with the new user information

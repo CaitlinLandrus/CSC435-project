@@ -23,6 +23,25 @@ router.get('/api/users', async (req, res) => {
 });
 
 
+router.get('/api/getUser/:username/:password', async (req, res) => {
+
+    try {
+        //console.log(req.params)
+        const users =  await User.find({username: req.params.username, password: req.params.password});
+
+        return res.json({
+            users
+        });
+    } catch (error) {
+        return res.status(500).json({
+            message: 'Internal Server error'
+        });
+    }
+
+});
+
+
+
 
 router.post('/api/createUser', async (req, res) => {
     const body = req.body
@@ -43,13 +62,13 @@ router.post('/api/createUser', async (req, res) => {
     user
         .save()
         .then(() => {
-            console.log("User Created");
-            
+            //console.log("User Created");
             return res.status(201).json({
                 success: true,
                 id: user._id,
                 message: 'User created!',
             })
+
         })
         .catch(error => {
             return res.status(400).json({
@@ -59,6 +78,27 @@ router.post('/api/createUser', async (req, res) => {
         })
 
 });
+
+
+
+
+router.delete('/api/delete/:id', async (req, res) => {
+
+    try {
+        //console.log(req.params)
+        //removes all user
+        const users =  await User.deleteOne({_id: req.params.id});
+        return res.json({
+            users
+        });
+    } catch (error) {
+        return res.status(500).json({
+            message: 'Internal Server error'
+        });
+    }
+
+});
+
 
 
 module.exports = router;

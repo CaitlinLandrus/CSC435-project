@@ -33,7 +33,7 @@ class RegisterPage extends Component {
             const { users } = response.data;
             console.log("Users on Mount", users)
           })
-          .catch(() => alert('Error fetching new users'));
+          .catch(() => {if(process.env.NODE_ENV !== 'test'){console.log('Error fetching new users')}});
    }
 
     componentWillUnmount  = async () => {
@@ -44,7 +44,7 @@ class RegisterPage extends Component {
             const { users } = response.data;
             console.log("Users on Unmount", users)
           })
-          .catch(() => alert('Error fetching new users'));
+          .catch(() => {if(process.env.NODE_ENV !== 'test'){console.log('Error fetching new users')}});
     }
 
     onSubmit = (data) => {
@@ -232,7 +232,7 @@ class RegisterForm extends Component{
           const payload = {type, firstName, lastName, email, username, password}
 
           //await api.insertUser(payload).then(res => {
-            //window.alert(`User inserted successfully`)
+            //window.console.log(`User inserted successfully`)
         //})
         axios({
             url: '/api/createUser',

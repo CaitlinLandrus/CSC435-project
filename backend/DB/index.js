@@ -3,8 +3,8 @@ const mongoose = require('mongoose')
 mongoose
     .connect(process.env.MONGODB_URI || 'mongodb://localhost/applicationdb', {
             useNewUrlParser: true,
-             useCreateIndex: true,
-            useUnifiedTopology: true 
+            useCreateIndex: true,
+            useUnifiedTopology: true
         })
     .catch(e => {
         console.error('Connection error', e.message)

@@ -18,7 +18,7 @@ const Error = (props)=>{
         function display(error){
             if(error){
                 return(
-                    <Alert severity="error">
+                    <Alert severity="error" id = "alert">
                         {props.children}
                      </Alert>
                 )

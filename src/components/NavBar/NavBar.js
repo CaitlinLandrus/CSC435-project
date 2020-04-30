@@ -52,7 +52,7 @@ const NavBar = (props) =>{
     */
     function loginLogoff(username, password){
         if(username || password){
-            return <div className = "header-links"><Link to="/logout" className='head-link'>Log Off</Link></div>
+            return <div className = "header-links" id="logout"><Link to="/logout" className='head-link'>Log Off</Link></div>
         }
         else{
             return (

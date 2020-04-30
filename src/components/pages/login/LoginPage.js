@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import './LoginPage.css';
 import  Button  from '../../FormFields/Button'
 import  Input  from '../../FormFields/Input'
 import  Error  from '../../Alert/Error'
 import  Header  from '../../PageElements/Header'
-import { Link } from 'react-router-dom'
+import { MemoryRouter, Link } from 'react-router-dom'
 import  userData from '../../data/userData.json';
+import axios from 'axios';
 
 
 /*
@@ -36,6 +37,34 @@ const initialState = {
 
 class LoginPage extends Component{
 
+    componentDidMount() {
+       document.title = 'Login | CSP Store';
+    }
+
+
+    /*componentDidMount = async () => {
+        // Print the users in the databaase
+    /*axios.get('/api/users')
+          .then((response) => {
+            const { users } = response.data;
+            console.log("Users on Mount", users)
+          })
+          .catch(() => alert('Error fetching new users'));
+
+
+          const params = {
+              username:"caitlin.landrus",
+              password:"testing"
+          }
+
+          axios.get('/api/getUser/caitlin.landrus/testing')
+                .then((response) => {
+                  const { users } = response.data;
+                  console.log("Users on Mount", users)
+                })
+                .catch(() => alert('Error fetching new users'));
+        }*/
+
     /** Form Constructor */
     constructor() {
         super();
@@ -44,6 +73,7 @@ class LoginPage extends Component{
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
+
 
 
 
@@ -63,6 +93,16 @@ class LoginPage extends Component{
         })
     }
 
+    /*getUser = async (username, password)=>{
+        await axios.get('/api/getUser/caitlin.landrus/testing')
+              .then((response) => {
+                const { users } = response.data;
+                console.log("Users in validator", users)
+                return users;
+              })
+              .catch(() => alert('Error fetching new users'));
+    }*/
+
     /*
     * Validates the user input.  Ensures all required fields are populated.
     * Ensures the username/password are valid based on the data provided
@@ -74,6 +114,12 @@ class LoginPage extends Component{
         let invalidLogin = '';
         let contains = false;
         let validUser = {};
+        //let users = this.getData()
+        //console.log("users", users);
+
+        //let users =  this.getUser(this.state.username, this.state.password);
+
+        //console.log("Users", users);
 
         //username is empty
         if(!this.state.username){
@@ -196,7 +242,7 @@ class LoginPage extends Component{
                     </form>
 
                     <div className = "createAccount">
-                        <p>Not registered? <span> </span><Link to="/register" className = 'create-account-link'>Create an account</Link> </p>
+                        <p>Not registered? <span> </span><MemoryRouter><Link to="/register" className = 'create-account-link'>Create an account</Link></MemoryRouter> </p>
                     </div>
                 </div>
             </div>

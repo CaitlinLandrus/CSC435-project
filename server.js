@@ -7,7 +7,7 @@ const cors = require('cors')
 
 //Global Variables
 const app = express()
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 5000
 
 
 //Import Files
@@ -37,3 +37,6 @@ app.use('/', routes);
 
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+
+
+module.exports = app; //Added for testing
