@@ -32,26 +32,42 @@ const initialState = {
         usernameError:'',
         passwordError:'',
         invalidLogin:'',
-    }
+    },
+    users:[]
 }
+
 
 class LoginPage extends Component{
 
-    componentDidMount() {
-       document.title = 'Login | CSP Store';
-    }
 
-
-    /*componentDidMount = async () => {
+    componentDidMount = async () => {
+        document.title = 'Login | CSP Store';
         // Print the users in the databaase
-    /*axios.get('/api/users')
+        axios.get('/api/users')
           .then((response) => {
-            const { users } = response.data;
+            const users  = response.data;
+            this.setState({users})
+            //console.log("State Users", this.state.users)
+          })
+          .catch(() => {if(process.env.NODE_ENV !== 'test'){console.log('Error fetching new users')}});
+   }
+
+
+/*
+    componentDidMount = async () => {
+        // Print the users in the databaase
+        const  users
+    axios.get('/api/users')
+          .then((response) => {
+            const  users  = response.data;
             console.log("Users on Mount", users)
           })
           .catch(() => alert('Error fetching new users'));
 
+          console.log(users)
+          console.log (typeof users)
 
+          /*
           const params = {
               username:"caitlin.landrus",
               password:"testing"
@@ -63,7 +79,8 @@ class LoginPage extends Component{
                   console.log("Users on Mount", users)
                 })
                 .catch(() => alert('Error fetching new users'));
-        }*/
+
+        }/*
 
     /** Form Constructor */
     constructor() {
@@ -114,12 +131,7 @@ class LoginPage extends Component{
         let invalidLogin = '';
         let contains = false;
         let validUser = {};
-        //let users = this.getData()
-        //console.log("users", users);
-
-        //let users =  this.getUser(this.state.username, this.state.password);
-
-        //console.log("Users", users);
+        //let validUser = {};
 
         //username is empty
         if(!this.state.username){
@@ -133,18 +145,34 @@ class LoginPage extends Component{
 
         //checks if the username and password exsits in the json object
         else{
+                var array =[]
+                array = this.state.users;
+
+            for (var i = 0; i < this.state.users.users.length; i++) {
+                //console.log("Username  ", this.state.users.users[i]['username'] , "password ", this.state.users.users[i]['password'])
+                //console.log("user ", this.state.username, "pass ",  this.state.password)
+                if (this.state.users.users[i]['username'] ===this.state.username && this.state.users.users[i]['password'] ===this.state.password) {
+                    validUser = this.state.users.users[i];
+                    contains = true;
+                }
+            }
+
+
+            //prior to adding DB
+            /*
             userData.forEach((user)=>{
                 if(user.username === this.state.username && user.password === this.state.password){
                     contains = true;
                     validUser = user;
                     //console.log("ValidUser",validUser)
                 }
-            })
+            })*/
         }
 
         //if the username and password do not exist in the json, update error message
         //only if the username and password have been populated.
         if(!contains && this.state.password && this.state.username){
+            console.log("ValidUser",validUser)
             invalidLogin = "Invalid username or password"
         }
 
@@ -177,6 +205,7 @@ class LoginPage extends Component{
         //prevent default prefents the default behavior or refreshing the page on submit
         e.preventDefault()
         const isValidUser = this.validateUser();
+        //console.log("isValidUser", isValidUser)
 
         //if the user is valid, send data to parent and clear fields
         if(isValidUser){
@@ -184,8 +213,9 @@ class LoginPage extends Component{
             //this.props.callback(this.state)
 
             //passes the user data to the redux login action
+            console.log("username",isValidUser.username)
             this.props.loginAction(
-                isValidUser.userID,
+                isValidUser._id,
                 isValidUser.type,
                 isValidUser.firstName,
                 isValidUser.lastName,

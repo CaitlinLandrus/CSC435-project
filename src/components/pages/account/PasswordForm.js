@@ -9,20 +9,21 @@ class  PasswordForm extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            user:{ type: '',
-                    username: '',
-                    password:'',
-                    confirmPassword:'',
-                    firstName:'',
-                    lastName: '',
-                    email: ''
+            user:{
+                type: props.loggedInUser.type,
+                username: props.loggedInUser.username,
+                password:props.loggedInUser.password,
+                confirmPassword:'',
+                firstName:props.loggedInUser.firstName,
+                lastName: props.loggedInUser.lastName,
+                email: props.loggedInUser.email
                 },
             passwords: {
-                currentPassword: '',
+                confirmNewPassword: '',
                 newPassword:''
             },
             error:{
-                currentPasswordError:'',
+                confirmNewMatchError:'',
                 newPasswordError:'',
                 confirmPasswordError: ''
             },
@@ -35,11 +36,13 @@ class  PasswordForm extends Component{
 
 
     componentDidMount( ){
+        /*
         //get json data with user data
         fetch('/userData.json')
         .then(res => res.json())
         //set the form state to the logged in user's information
         .then(element => this.setState({ user: element.find(e => e.username === this.props.loggedInUser.username) }));
+        */
 
         //reset the success value to false after 5 seconds
         this.timer = setInterval(
@@ -87,15 +90,15 @@ class  PasswordForm extends Component{
     validate = () =>{
         let confirmPasswordError ='';
         let newPasswordError = '';
-        let currentPasswordError = '';
+        let confirmNewMatchError = '';
 
 
         //reset the state back to false to keep it in sync on re-submit
         this.setState({success: false})
 
-        //Validate current password is populated
-        if(!this.state.passwords.currentPassword){
-            currentPasswordError = 'Current Password is required';
+        //Validate confirm password is populated
+        if(!this.state.passwords.confirmNewPassword){
+            confirmPasswordError = 'Current Password is required';
         }
 
         //Confirm new password is populated
@@ -103,9 +106,9 @@ class  PasswordForm extends Component{
             newPasswordError = 'New Password is required';
         }
 
-        //current password does not match actual password
-        if(this.state.passwords.currentPassword !== this.state.user.password && this.state.passwords.currentPassword ){
-            confirmPasswordError = 'Invalid password';
+        //confirm password does not match actual password
+        if(this.state.passwords.confirmNewPassword !== this.state.passwords.newPassword && this.state.passwords.confirmNewPassword ){
+            confirmNewMatchError = 'Passwords do not match!';
         }
 
         //update error state if there are any errors
@@ -115,13 +118,13 @@ class  PasswordForm extends Component{
                   //unpacking
                         ...prevState.error.newPasswordError, newPasswordError,
                         ...prevState.error.confirmPasswordError, confirmPasswordError,
-                        ...prevState.error.currentPasswordError, currentPasswordError
+                        ...prevState.error.confirmNewMatchError, confirmNewMatchError
                       }
            }
        })
 
        //return false if any errors exist
-       if(newPasswordError || confirmPasswordError || currentPasswordError ){
+       if(newPasswordError || confirmPasswordError || confirmNewMatchError ){
             return false;
         }
 
@@ -158,6 +161,7 @@ class  PasswordForm extends Component{
 
                 <form className = "RegisterPage-form" onSubmit={this.handleSubmit}>
 
+
                     {/* New Password -- calls handleChange() method when user types to update state */}
                     <Input
                         title ="New Password:"
@@ -170,15 +174,17 @@ class  PasswordForm extends Component{
 
                     {/* Current Password -- calls handleChange() method when user types to update state */}
                     <Input
-                        title ="Current Password:"
-                        name={"currentPassword"}
+                        title ="Cofirm New Password:"
+                        name={"confirmNewPassword"}
                         type = "password"
-                        value = {this.state.passwords.currentPassword}
+                        value = {this.state.passwords.confirmNewPassword}
                         onChange = {this.handleChange}
                     />
-                    <Error>{this.state.error.currentPasswordError}</Error>
+                    <Error>{this.state.error.confirmNewMatchError}</Error>
                     <Error>{this.state.error.confirmPasswordError}</Error>
                     <Success success = {this.state.success} >Password Updated</Success>
+
+
                     <br/>
 
 

@@ -10,13 +10,15 @@ class AccountForm extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            user:{  /*type: '',
-                    username: '',
-                    password:'',
-                    confirmPassword:'',
-                    firstName:'',
-                    lastName: '',
-                    email: ''*/},
+            user:{
+                 type: props.loggedInUser.type,
+                 username: props.loggedInUser.username,
+                 password:props.loggedInUser.password,
+                 confirmPassword:'',
+                 firstName:props.loggedInUser.firstName,
+                 lastName: props.loggedInUser.lastName,
+                 email: props.loggedInUser.email
+            },
             error:{
                 usernameError: '',
                 firstNameError:'',
@@ -37,6 +39,9 @@ class AccountForm extends Component{
 
     //when the component mounts in the UI, populate all of the fields wih the current user's data
     componentDidMount(){
+        console.log("logged in user", this.props.loggedInUser.username)
+        console.log("user", this.props.loggedInUser)
+        /*
         //get json data with user data
         fetch('/userData.json')
         .then(res => res.json())
@@ -47,7 +52,10 @@ class AccountForm extends Component{
                 this.setState({ user: element.find(e => e.username === this.props.loggedInUser.username) } )
             }
         });
+        */
 
+
+        console.log("user state", this.state.user)
         /* clears the staus messages on the form after 5 seconds */
         this.timer = setInterval(
             () => {
@@ -59,6 +67,7 @@ class AccountForm extends Component{
             },
             5000,
         );
+
 
         console.log("Update User Details has mounted")
     }

@@ -50,7 +50,7 @@ export default function  profileReducter(state = INITIAL_STATE, action ={}){
         }
 
         case UPDATE_ACCOUNT:{
-            //console.log(action)
+            console.log(action)
             const user = action.payload;
             if(state.userID === user.userID){
                 //update profile with the new user information

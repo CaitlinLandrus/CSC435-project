@@ -81,6 +81,41 @@ router.post('/api/createUser', async (req, res) => {
 
 
 
+router.put('/api/updateUser/:id', async (req, res) => {
+    const body = req.body
+
+    User.findOne({ _id: req.params.id }, (err, user) => {
+        if (err) {
+            return res.status(404).json({
+                err,
+                message: 'User not found!',
+            })
+        }
+        user.firstName = body.firstName
+        user.lastName = body.lastName
+        user.username = body.username
+        user.password = body.password
+        user.email = body.email
+        user
+            .save()
+            .then(() => {
+                return res.status(200).json({
+                    success: true,
+                    id: user._id,
+                    message: 'User updated!',
+                })
+            })
+            .catch(error => {
+                return res.status(404).json({
+                    error,
+                    message: 'User not updated!',
+                })
+            })
+    })
+
+});
+
+
 
 router.delete('/api/delete/:id', async (req, res) => {
 

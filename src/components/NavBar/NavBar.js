@@ -67,7 +67,7 @@ const NavBar = (props) =>{
     function manageStore(userType){
         if(userType === "Administrator"){
             return(
-                    <div className = "links"><Link to="/manageStore" className='text-link'>Manage Store</Link></div>
+                    <div className = "links"><Link to="/manage" className='text-link'>Manage Store</Link></div>
             )
         }
     }

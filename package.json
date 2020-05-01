@@ -40,7 +40,8 @@
     "react-scripts": "3.4.0",
     "redux": "^4.0.5",
     "save-dev": "0.0.1-security",
-    "sinon": "^9.0.2"
+    "sinon": "^9.0.2",
+    "use-force-update": "^1.0.7"
   },
   "scripts": {
     "start": "react-scripts start",

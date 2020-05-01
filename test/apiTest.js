@@ -30,10 +30,36 @@ describe('Test API Routes', () => {
           });
       });
 
+      describe('POST new user', () => {
+          it('it should create a new user', (done) => {
+              //{ type : 'Student', username, password, firstName : 'CAT',lastName: 'TEST', email: 'test@test.com' }
+            chai.request(server)
+                .post('/api/createUser/')
+                .send({
+                      '_method': 'post',
+                      'type': 'Student',
+                      'firstName': 'CAT',
+                      'lastName': 'TEST',
+                      'email': 'test@test.com',
+                      'username': 'cat.test',
+                      'password': 'test',
+                })
+                .end((error, response) => {
+                      //console.log(response.status)
+                      //console.log(response.body)
+                      expect(response).to.have.status(201);
+                      createdUser = response.body.id; //used to delete the user in the next test
+                      //expect(response.body).to.be.deep.equal(   );
+                  done();
+                });
+          });
+      });
+
+
         describe('GET/:username/:password', () => {
             it('it should GET a single user by username and password', (done) => {
               chai.request(server)
-                  .get('/api/getUser/caitlin.landrus/testing')
+                  .get('/api/getUser/cat.test/test')
                   .end((error, response) => {
                         //console.log(response.status)
                         //console.log(response.body)
@@ -42,13 +68,13 @@ describe('Test API Routes', () => {
                             {
                               users: [
                                     {
-                                      _id: '5ea74587f21d725374d9e024',
+                                      _id: createdUser,
                                       type: 'Student',
-                                      firstName: 'Caitlin',
-                                      lastName: 'Landrus',
-                                      email: 'landrusc@csp.edu',
-                                      username: 'caitlin.landrus',
-                                      password: 'testing',
+                                      firstName: 'CAT',
+                                      lastName: 'TEST',
+                                      email: 'test@test.com',
+                                      username: 'cat.test',
+                                      password: 'test',
                                       __v: 0
                                     }
                               ]
@@ -61,31 +87,29 @@ describe('Test API Routes', () => {
 
 
 
-        describe('POST new user', () => {
-            it('it should create a new user', (done) => {
+
+
+        describe('PUT/ _id', () => {
+            it('it should update the existing user', (done) => {
                 //{ type : 'Student', username, password, firstName : 'CAT',lastName: 'TEST', email: 'test@test.com' }
               chai.request(server)
-                  .post('/api/createUser/')
+                  .put('/api/updateUser/'+createdUser)
                   .send({
-                        '_method': 'post',
-                        'type': 'Student',
-                        'firstName': 'CAT',
+                        'firstName': 'CAT_UPDATED',
                         'lastName': 'TEST',
                         'email': 'test@test.com',
                         'username': 'cat.test',
                         'password': 'test',
                   })
-                  .end((error, response) => {
-                        //console.log(response.status)
-                        //console.log(response.body)
-                        expect(response).to.have.status(201);
-                        createdUser = response.body.id; //used to delete the user in the next test
-                        //expect(response.body).to.be.deep.equal(   );
-                    done();
-                  });
+                  .then(function (res){
+                      expect(res).to.have.status(200);
+                  })
+                  .catch(function(err){
+                      console.log(err)
+                  })
+                  done();
             });
         });
-
 
         describe('DELETE  user', () => {
 
@@ -102,4 +126,5 @@ describe('Test API Routes', () => {
                   });
             });
         });
+        
 });
