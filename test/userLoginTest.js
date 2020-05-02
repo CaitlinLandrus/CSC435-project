@@ -33,7 +33,7 @@ afterEach(() => {
   rootContainer = null;
 });
 
-/* ------------  UI TESTS  ---------------*/
+/* ------------  End to End Test  ---------------*/
 describe("Simulate User Login", () => {
   it("Initial store state has no logged in user", (done) => {
       expect(store).to.have
@@ -69,8 +69,8 @@ describe("Simulate User Login", () => {
   });
 
 
-//These tests brok when I linked the login form to the Database
-// I havent' figured out how to get the database stuff to run in the componentDidMount area yet
+//These tests broke when I linked the login form to the Database
+// I haven't figured out how to get the database stuff to run in the componentDidMount area yet
 
 /*
   it("Alert shows when password is invalid on submit", (done) => {
